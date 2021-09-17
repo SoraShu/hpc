@@ -4,6 +4,11 @@
   - [安装OpenBLAS](#安装openblas)
     - [包管理](#包管理)
     - [在仓库下编译](#在仓库下编译)
+- [gcc的使用](#gcc的使用)
+  - [常用参数](#常用参数)
+  - [分步编译](#分步编译)
+- [gdb使用](#gdb使用)
+  - [gdb命令](#gdb命令)
 
 # OpenBLAS库及其安装
 
@@ -62,3 +67,53 @@ gcc test.c  -I ./include/ -L ./lib -lopenblas -o test
 0.000000 1.000000 2.000000 3.000000 4.000000 5.000000 6.000000 7.000000 8.000000 9.000000 
 90.000000 81.000000 72.000000 63.000000 54.000000 45.000000 36.000000 27.000000 18.000000 9.000000
 ```
+
+# gcc的使用
+
+## 常用参数
+
+|参数|含义|
+|---|---|
+|`-E`|生成预处理文件(.i)|
+|`-S`|生成汇编代码(.s)|
+|`-c`|生成机器码(.o)|
+|`-o`|指定输出|
+|`-I`|指定头文件目录|
+|`-L`|指定库文件目录|
+|`-l`|链接库|
+|`-finput-charset`|指定源文件字符集|
+|`-fexec-charset`|指定 const char* 字符集|
+
+## 分步编译
+
+```bash
+gcc -E hello.c -o hello.i
+gcc -S hello.i -o hello.s
+gcc -c hello.s -o hello.o
+gcc hello.o -o hello
+```
+
+# gdb使用
+
+```bash
+gcc -g hello.c -o hello
+```
+## gdb命令
+|命令|简写|含义|
+|:-:|:--:|---|
+|help|h|+命令查看帮助|
+|run|r|从头开始运行程序|
+|start|—|从头开始单步运行程序|
+|list|l|查看源代码|
+|break|—|+num在num行设置断点|
+|info breakpoints|—|查看当前设置的所有断点|
+|delete breakpoints|—|+num删除第num个断点|
+|next|n|单步执行(遇到函数同)|
+|step|s|单步执行(函数直接执行)|
+|continue|c|执行至下一断点|
+|finish|—|结束当前函数|
+|info|i|查看局部变量的数值|
+|print|p|打印变量|
+|display|—|追踪变量|
+|watch|—|设置观察点|
+|quit|q|退出gdb|
