@@ -81,7 +81,7 @@ git push -u origin main
 ```bash
 git config --global https.proxy http://127.0.0.1:11223
 ```
-若使用ssh，则需要配置ssh代理。在[添加ssh密钥](##添加ssh密钥)中，将添加的配置修改为：
+若使用ssh，则需要配置ssh代理。在[添加ssh密钥](#添加ssh密钥)中，将添加的配置修改为：
 ```
 Host github.com
     User git
