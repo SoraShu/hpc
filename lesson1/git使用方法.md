@@ -1,3 +1,5 @@
+<center>苏亦凡&emsp;&emsp;计算机科学与技术学院&emsp;&emsp;200111229</center>
+
 # git在linux下的使用方法
 > 以Ubuntu20.04为例
 
