@@ -5,6 +5,8 @@
 #include <string.h>
 #include <stdio.h>
 #include <errno.h>
+#include <pthread.h>
+#include <stdlib.h>
 
 #define PORT 8000 // 服务器监听端口
 
@@ -25,9 +27,12 @@ void send_handle(int client_socket)
     close(client_socket);
 }
 
+void doit(int *arg);
+
 int main()
 {
-
+    // int ret;
+    pthread_t thrd;
     int server_socket = socket(AF_INET, SOCK_STREAM, 0); //初始化套接字
     struct sockaddr_in server_addr;
 
@@ -56,9 +61,18 @@ int main()
         read(client_socket, buf, 1024); //读取客户端内容，这里是HTTP的请求数据
         // printf("%s",buf);     // 打印读取的内容
 
-        send_handle(client_socket);
+        // send_handle(client_socket);
+        pthread_create(&thrd, NULL, (void *)doit, &client_socket);
     }
     close(server_socket);
 
     return 0;
+}
+
+void doit(int *arg)
+{
+    pthread_detach(pthread_self());
+    int client_socket = *arg;
+    send_handle(client_socket);
+    pthread_exit(0);
 }
