@@ -17,7 +17,7 @@ apt install git
 配置全局用户名与邮箱：
 ```bash
 # 字符串替换为对应字符串
-git config --global username "Your Name"
+git config --global user.name "Your Name"
 git config --global user.email "youremail@yourdomain.com"
 ```
 
@@ -51,8 +51,8 @@ vim /etc/ssh/ssh_config
 
 直接对本地文件夹进行初始化。下面演示建立空仓库并添加README.md的操作过程。
 ```bash
-mkdir hcp
-cd hcp
+mkdir hpc
+cd hpc
 echo "# 高性能计算应用实践" >> README.md
 git init
 git add .
@@ -66,7 +66,7 @@ git commit -m 'init'
 
 添加远程仓库：
 ```bash
-git remote add origin git@github.com:sorashu/hcp.git
+git remote add origin git@github.com:sorashu/hpc.git
 git push -u origin main
 ```
 我们在`push`时加了`-u`参数，之后可以用`git push`替代`git push origin main`。
